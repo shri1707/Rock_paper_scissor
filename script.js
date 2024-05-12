@@ -1,22 +1,20 @@
 console.log("hello world");
 
-let humanScore= 0
-let compScore= 0
+let humanScore = 0
+let compScore = 0
 
 function getCompChoice() {
     let x = Math.floor(Math.random() * (3 - 0))
-    console.log(x)
     if (x === 0) {
-        console.log("Rock");
+        return "Rock"; 
     }
     else if (x === 1) {
-        console.log("Paper");
+        return "Paper";
     }
     else {
-        console.log("Scissor");
+        return "Scissor";
     }
 }
-getCompChoice()
 
 function getHumanChoice() {
     let a = prompt(`Enter a value between 0 to 2
@@ -24,14 +22,64 @@ function getHumanChoice() {
     1 means Paper
     2 means Scissor`
     )
-    if (a === 0) {
-        console.log("Rock")
+    if (a == 0) {
+        return "Rock";
     }
-    else if (a === 1) {
-        console.log("Paper");
+    else if (a == 1) {
+        return "Paper";
     }
     else {
-        console.log("Scissor");
+        return "Scissor";
     }
 }
-getHumanChoice()
+
+function playRound(humanChoice, computerChoice) {
+    let humanSelection = humanChoice.toLowerCase()
+    humanSelection = humanSelection[0].toUpperCase() + humanSelection.substring(1)
+    if (humanSelection == "Rock") {
+        if (computerChoice == "Paper") {
+            console.log("You loose! Paper beats Rock")
+            compScore++
+        }
+        else if (computerChoice == "Scissor") {
+            console.log("You won! Rock beats Scissor")
+            humanScore++
+        }
+        else {
+            console.log("Draw! both showed Rock")
+        }
+    }
+    else if (humanSelection == "Paper") {
+        if (computerChoice == "Scissor") {
+            console.log("You loose! Scissor beats Paper")
+            compScore++
+        }
+        else if (computerChoice == "Rock") {
+            console.log("You won! Paper beats Rock")
+            humanScore++
+        }
+        else {
+            console.log("Draw! both showed Paper")
+        }
+    }
+    else if (humanSelection == "Scissor") {
+        if (computerChoice == "Rock") {
+            console.log("You loose! Rock beats Scissor")
+            compScore++
+        }
+        else if (computerChoice == "Paper") {
+            console.log("You won! Scissor beats Paper")
+            humanScore++
+        }
+        else {
+            console.log("Draw! both showed Scissor")
+        }
+    }
+}
+
+let h= getHumanChoice()
+console.log(h)
+let c= getCompChoice()
+console.log(c)
+playRound(h,c);
+
