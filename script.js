@@ -1,5 +1,8 @@
 console.log("hello world");
 
+let humanScore= 0
+let compScore= 0
+
 function getCompChoice() {
     let x = Math.floor(Math.random() * (3 - 0))
     console.log(x)
