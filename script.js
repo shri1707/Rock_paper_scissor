@@ -77,9 +77,26 @@ function playRound(humanChoice, computerChoice) {
     }
 }
 
-let h= getHumanChoice()
-console.log(h)
-let c= getCompChoice()
-console.log(c)
-playRound(h,c);
 
+function playGame(){
+    let i=0
+    while (i<5) {
+        let h= getHumanChoice()
+        console.log(h)
+        let c= getCompChoice()
+        console.log(c)
+        playRound(h,c);
+        i++
+    }
+    if (compScore> humanScore){
+        console.log("Comp wins")
+    }
+    else if (humanScore>compScore){
+        console.log("Human wins")
+    }
+    else{
+        console.log("draw")
+    }
+}
+
+playGame()
