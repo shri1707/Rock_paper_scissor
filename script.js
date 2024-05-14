@@ -2,11 +2,12 @@ console.log("hello world");
 
 let humanScore = 0
 let compScore = 0
+const body = document.querySelector("body")
 
 function getCompChoice() {
     let x = Math.floor(Math.random() * (3 - 0))
     if (x === 0) {
-        return "Rock"; 
+        return "Rock";
     }
     else if (x === 1) {
         return "Paper";
@@ -35,68 +36,78 @@ function getHumanChoice() {
 
 function playRound(humanChoice, computerChoice) {
     let humanSelection = humanChoice.toLowerCase()
+    const res = document.querySelector("#result")
     humanSelection = humanSelection[0].toUpperCase() + humanSelection.substring(1)
     if (humanSelection == "Rock") {
         if (computerChoice == "Paper") {
-            console.log("You loose! Paper beats Rock")
             compScore++
+            console.log("You loose! Paper beats Rock")
+            res.innerHTML = `You loose! Paper beats Rock<br>computer Score = ${compScore}, human Score = ${humanScore} `
+            
         }
         else if (computerChoice == "Scissor") {
             console.log("You won! Rock beats Scissor")
             humanScore++
+            res.innerHTML = `You won! Rock beats Scissor<br>computer Score = ${compScore}, human Score = ${humanScore} `
+            
         }
         else {
             console.log("Draw! both showed Rock")
+            res.innerHTML = `Draw! both showed Rock<br>computer Score = ${compScore}, human Score = ${humanScore} `
         }
     }
     else if (humanSelection == "Paper") {
         if (computerChoice == "Scissor") {
             console.log("You loose! Scissor beats Paper")
             compScore++
+            res.innerHTML = `You loose! Scissor beats Paper<br>computer Score = ${compScore}, human Score = ${humanScore} `
         }
         else if (computerChoice == "Rock") {
             console.log("You won! Paper beats Rock")
             humanScore++
+            res.innerHTML = `You won! Paper beats Rock<br>computer Score = ${compScore}, human Score = ${humanScore} `
         }
         else {
             console.log("Draw! both showed Paper")
+            res.innerHTML = `Draw! both showed Paper<br>computer Score = ${compScore}, human Score = ${humanScore} `
         }
     }
     else if (humanSelection == "Scissor") {
         if (computerChoice == "Rock") {
             console.log("You loose! Rock beats Scissor")
             compScore++
+            res.innerHTML = `You loose! Rock beats Scissor<br>computer Score = ${compScore}, human Score = ${humanScore} `
         }
         else if (computerChoice == "Paper") {
             console.log("You won! Scissor beats Paper")
             humanScore++
+            res.innerHTML = `You won! Scissor beats Paper<br>computer Score = ${compScore}, human Score = ${humanScore} `
         }
         else {
             console.log("Draw! both showed Scissor")
+            res.innerHTML = `Draw! both showed Scissor<br>computer Score = ${compScore}, human Score = ${humanScore} `
         }
     }
 }
 
+const rock = document.querySelector("#rock")
+const paper = document.querySelector("#paper")
+const scissor = document.querySelector("#scissor")
 
-function playGame(){
-    let i=0
-    while (i<5) {
-        let h= getHumanChoice()
-        console.log(h)
-        let c= getCompChoice()
-        console.log(c)
-        playRound(h,c);
-        i++
-    }
-    if (compScore> humanScore){
-        console.log("Comp wins")
-    }
-    else if (humanScore>compScore){
-        console.log("Human wins")
-    }
-    else{
-        console.log("draw")
-    }
-}
+rock.addEventListener("click", () => {
+    comp = getCompChoice()
+    console.log(comp)
+    round = playRound("rock", comp)
 
-playGame()
+})
+paper.addEventListener("click", () => {
+    comp = getCompChoice()
+    console.log(comp)
+    round = playRound("paper", comp)
+})
+scissor.addEventListener("click", () => {
+    comp = getCompChoice()
+    console.log(comp)
+    round = playRound("scissor", comp)
+})
+
