@@ -2,6 +2,7 @@ console.log("hello world");
 
 let humanScore = 0
 let compScore = 0
+let roundNum =0
 const body = document.querySelector("body")
 
 function getCompChoice() {
@@ -88,26 +89,37 @@ function playRound(humanChoice, computerChoice) {
             res.innerHTML = `Draw! both showed Scissor<br>computer Score = ${compScore}, human Score = ${humanScore} `
         }
     }
+    roundNum++;
+    if (roundNum === 5) {
+        let result = document.querySelector("#result");
+        if (humanScore > compScore) {
+            result.innerHTML = "Human wins!";
+        } else if (compScore > humanScore) {
+            result.innerHTML = "Comp wins!";
+        } else {
+            result.innerHTML = "Tie";
+        }
+        notice.innerHTML= "Refresh page to play again"
+        // Disable buttons after 5 rounds
+        document.querySelectorAll(".btn").forEach(button => {
+            button.disabled = true;
+        });
+    }
 }
 
-const rock = document.querySelector("#rock")
-const paper = document.querySelector("#paper")
-const scissor = document.querySelector("#scissor")
 
-rock.addEventListener("click", () => {
-    comp = getCompChoice()
-    console.log(comp)
-    round = playRound("rock", comp)
+// const rock = document.querySelector("#rock")
+// const paper = document.querySelector("#paper")
+// const scissor = document.querySelector("#scissor")
+// const result = document.querySelector("#result")
+const notice= document.querySelector(".notice")
 
-})
-paper.addEventListener("click", () => {
-    comp = getCompChoice()
-    console.log(comp)
-    round = playRound("paper", comp)
-})
-scissor.addEventListener("click", () => {
-    comp = getCompChoice()
-    console.log(comp)
-    round = playRound("scissor", comp)
-})
+const buttons = document.querySelectorAll(".btn");
+buttons.forEach(button => {
+    button.addEventListener("click", () => {
+        const comp = getCompChoice();
+        const selectedChoice = button.id;
+        playRound(selectedChoice, comp);
+    });
+});
 
